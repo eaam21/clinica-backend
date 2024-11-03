@@ -2,6 +2,7 @@ package com.clinica.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +12,9 @@ import com.clinica.repository.IEspecialidadRepository;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/api/consulta")
+@RequestMapping("/api/especialidad")
 @AllArgsConstructor
 public class EspecialidadController {
 

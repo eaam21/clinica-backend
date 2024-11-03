@@ -20,18 +20,18 @@ public class Paciente {
 	private Long id;
 
 	@Column(name = "apellido_paterno")
-	private String apellidopaterno;
+	private String apellidoPaterno;
 
 	@Column(name = "apellido_materno")
-	private String apellidomaterno;
+	private String apellidoMaterno;
 
 	@Column(name = "nombres")
 	private String nombres;
 
 	private String dni;
-	private int peso;
-	private int talla;
-	private double imc;
+	private Float peso;
+	private Float talla;
+	private Float imc;
 
 	@ManyToOne
 	@JoinColumn(name = "id_especialidad")
