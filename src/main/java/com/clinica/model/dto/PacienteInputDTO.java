@@ -9,5 +9,6 @@ public record PacienteInputDTO(
 		Float peso,
 		Float talla,
 		Float imc,
+		Integer estado,
 		Long idEspecialidad
 		) {}

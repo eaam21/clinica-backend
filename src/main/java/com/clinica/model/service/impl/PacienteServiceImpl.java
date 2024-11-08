@@ -21,12 +21,14 @@ public class PacienteServiceImpl implements IPacienteService {
 	
 	@Override
 	public List<Paciente> listar() {
-		return pacienteRepository.findAll();
+		Integer estadoActivo = 1;
+		return pacienteRepository.findAllByEstado(estadoActivo);
 	}
 	
 	@Override
 	@Transactional
 	public Paciente registrar(PacienteInputDTO pacienteDTO) {
+		Integer estadoActivo = 1;
 		Paciente paciente = new Paciente();
 		paciente.setApellidoPaterno(pacienteDTO.apellidoPaterno());
 		paciente.setApellidoMaterno(pacienteDTO.apellidoMaterno());
@@ -35,6 +37,7 @@ public class PacienteServiceImpl implements IPacienteService {
 		paciente.setPeso(pacienteDTO.peso());
 		paciente.setTalla(pacienteDTO.talla());
 		paciente.setImc(pacienteDTO.imc());
+		paciente.setEstado(estadoActivo);
 		Especialidad especialidad = new Especialidad();
 		especialidad.setId(pacienteDTO.idEspecialidad());
 		paciente.setEspecialidad(especialidad);
@@ -44,5 +47,29 @@ public class PacienteServiceImpl implements IPacienteService {
 	@Override
 	public Paciente buscarPorId(Long id) {
 		return pacienteRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public Paciente actualizar(Long idPaciente, PacienteInputDTO pacienteDTO) {
+		Paciente pacienteEncontrado = buscarPorId(idPaciente);		
+        pacienteEncontrado.setApellidoPaterno(pacienteDTO.apellidoPaterno());
+        pacienteEncontrado.setApellidoMaterno(pacienteDTO.apellidoMaterno());
+        pacienteEncontrado.setNombres(pacienteDTO.nombres());
+        pacienteEncontrado.setDni(pacienteDTO.dni());
+        pacienteEncontrado.setPeso(pacienteDTO.peso());
+        pacienteEncontrado.setTalla(pacienteDTO.talla());
+        pacienteEncontrado.setImc(pacienteDTO.imc());
+		Especialidad especialidad = new Especialidad();
+		especialidad.setId(pacienteDTO.idEspecialidad());
+        pacienteEncontrado.setEspecialidad(especialidad);
+		return pacienteRepository.save(pacienteEncontrado);
+	}
+
+	@Override
+	public Paciente eliminar(Long idPaciente) {
+		Integer estadoInactivo = 0;
+		Paciente pacienteEncontrado = buscarPorId(idPaciente);
+		pacienteEncontrado.setEstado(estadoInactivo);
+		return pacienteRepository.save(pacienteEncontrado);
 	}
 }

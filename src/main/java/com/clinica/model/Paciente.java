@@ -32,6 +32,7 @@ public class Paciente {
 	private Float peso;
 	private Float talla;
 	private Float imc;
+	private Integer estado;
 
 	@ManyToOne
 	@JoinColumn(name = "id_especialidad")
