@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +54,7 @@ public class PacienteController {
         return ResponseEntity.ok(pacienteActualizado);
     }
 
-    @PostMapping("/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Paciente>eliminar(@PathVariable Long id) {
         Paciente pacienteEncontrado = pacienteService.buscarPorId(id);
         if (pacienteEncontrado == null) {
@@ -64,5 +63,4 @@ public class PacienteController {
         Paciente pacienteEliminado = pacienteService.eliminar(id);
         return ResponseEntity.ok(pacienteEliminado);
     }
-
 }
