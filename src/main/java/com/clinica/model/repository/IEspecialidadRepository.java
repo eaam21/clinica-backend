@@ -1,4 +1,4 @@
-package com.clinica.repository;
+package com.clinica.model.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

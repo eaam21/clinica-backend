@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clinica.model.entity.Especialidad;
-import com.clinica.repository.IEspecialidadRepository;
+import com.clinica.model.repository.IEspecialidadRepository;
 
 import lombok.AllArgsConstructor;
 

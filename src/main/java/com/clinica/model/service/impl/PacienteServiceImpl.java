@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.clinica.model.dto.PacienteInputDTO;
 import com.clinica.model.entity.Especialidad;
 import com.clinica.model.entity.Paciente;
+import com.clinica.model.repository.IPacienteRepository;
 import com.clinica.model.service.IPacienteService;
-import com.clinica.repository.IPacienteRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
