@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.clinica.model.Especialidad;
-import com.clinica.model.Paciente;
 import com.clinica.model.dto.PacienteInputDTO;
+import com.clinica.model.entity.Especialidad;
+import com.clinica.model.entity.Paciente;
 import com.clinica.model.service.IPacienteService;
 import com.clinica.repository.IPacienteRepository;
 

@@ -2,8 +2,8 @@ package com.clinica.model.service;
 
 import java.util.List;
 
-import com.clinica.model.Paciente;
 import com.clinica.model.dto.PacienteInputDTO;
+import com.clinica.model.entity.Paciente;
 
 public interface IPacienteService {
 	List<Paciente> listar();

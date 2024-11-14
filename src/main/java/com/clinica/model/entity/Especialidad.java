@@ -1,4 +1,4 @@
-package com.clinica.model;
+package com.clinica.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

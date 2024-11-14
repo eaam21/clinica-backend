@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clinica.model.Paciente;
 import com.clinica.model.dto.PacienteInputDTO;
+import com.clinica.model.entity.Paciente;
 import com.clinica.model.service.IPacienteService;
 
 import lombok.AllArgsConstructor;
