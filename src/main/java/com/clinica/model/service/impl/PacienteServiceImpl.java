@@ -33,7 +33,7 @@ public class PacienteServiceImpl implements IPacienteService {
 		paciente.setApellidoPaterno(pacienteDTO.apellidoPaterno());
 		paciente.setApellidoMaterno(pacienteDTO.apellidoMaterno());
 		paciente.setNombres(pacienteDTO.nombres());
-		paciente.setDni(pacienteDTO.nombres());
+		paciente.setDni(pacienteDTO.dni());
 		paciente.setPeso(pacienteDTO.peso());
 		paciente.setTalla(pacienteDTO.talla());
 		paciente.setImc(pacienteDTO.imc());
