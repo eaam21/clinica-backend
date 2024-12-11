@@ -16,10 +16,9 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
-
+public class CustomUserDetailsService implements UserDetailsService {	
 	private IUsuarioRepository usuarioRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepository.findOneByNombreUsuario(username).orElseThrow(()->new UsernameNotFoundException("Usuario no encontrado"));
@@ -30,5 +29,4 @@ public class CustomUserDetailsService implements UserDetailsService {
 				.roles(listaRoles.get(0).getNombre())
 				.build();
 	}
-
 }

@@ -12,33 +12,32 @@ import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtil {
-	private static final String SECRET_KEY = "08a55ad23bdc4c4d4d782e41ac5b5a5328a04838f17275803d4ecbd594cb20a8572681913eb2fc5933f6bfb08aa141c35348549e846ced8f236bcb2ebe93b41d67ca6783d7c1bfbda5a56c309a9e51ebc680aabe177ffa1ac659d474d35046aaea665fb95f55bde9424d511c6e8433e9fc1b922a9d50b3abc9d304353c017022579efe16a5b463398724ad6d8ce49d10aa6ac8a013404f0d5ead746a2d204fa8f67e8967e3987b177314fe08bfbc4588eaf67326016e0e68318fc034a108797acaf2f3cb05c1acf65a143523c8d9468750954c3e1e3c8c7713d7166d859ab20979ebbcb4a70fb454403b8b602febc2fcbb2329d511258926820dd7708d37d97085c31b286754f290f68f9f9036ce3a8fa53473c020d30b9eeaa2ef0d527723c41349a5febf3538b3d0318e6eac7901b7852e841f3d6c8ddeb7da20f2d985fca16636dd9b3cf386420dc746019a30e974624ba17cfa742027e21e062d7ef6690537d486e4d1d9fda545fe29bfb84dba0e641875642ea08ff24eff18607ea5e1cc7c926b966256f2e361424e21fbe791f3efb48552a4906be4e93297cd0789529e342712dac4266e78430337386454a7e3b21f9c5d1acdfa6e5893fd0d97d1d630283c4a5b55c01720b5a6a7deb9d6157e9514feae7e6c824eee9926b072226e093a1d3994b20c52952ef3dc82a72224d31b62c17de2a8a9c42950905461857cd6";
-	private static final long EXPIRATION_TIME = 3600000;
-	
-	public String generateToken(String username, String rol) {
-		return Jwts.builder()
-				.subject(username)
-				.claim("rol", rol)
-				.issuedAt(new Date())
-				.expiration(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
-				.signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY)))
-				.compact();
-	}
-	
-	public Claims extractionClaims(String token) {
-		return Jwts.parser()
-				.verifyWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY)))
-				.build()
-				.parseSignedClaims(token)
-				.getPayload();
-	}
-	
-	public boolean validateToken(String token) {
-		try {
-			extractionClaims(token);
-			return true;
-		} catch (JwtException e) {
-			return false;
-		}
-	}
+    private static final String SECRET_KEY = "3fb261c9eab9df3b7343b039f75ac8f448136cbf2facebf756ff9f0108af0223daee7db655efa4c19b7734a238486cb0d6a840094e6d65d26a3d13e0666aeb5d9473453aa1160e0bfc5995a14cf4b1801943a9faf2dedde4aa4fa68c170cfd2264cd6cf79471ee047ca043018191eaa2e88123be95a02fed8da2d295afba007369a79166768d4c75739e1fd4dafd37d04d58cd1ef621bacf7e26155441ad8f2c82df7dd1349a2505d077b4723c7b5f8c5831909557df37c1f323fcd63e2001791ed26bdc9cb8b536c76711a987ec256d02947ead1ab62d22cbb9e5d62fa33db5f460f371a2d4108bdd63dc50084a9631f0ea3f09fca5eba21159805a67ad817d977cb3105c532705eddda48dfb5e215908ead79d69447b3655ca1c39768fb0f298128c65649870c8c17b345e5abdc812decb687874f8fd3df73ebdc8dfe871d8f3167bf64b123186e4a17be9594bcd85304ca13fda016db8f53ab1002e7bd390d3d575a0d14d47279d706f2a1ca434c428177316914cc3fc0ba8aef2d025805fab41c4b7f77097013634b2c616477f3ee0dfc7069967f41758a7c047faa03695664dfeb6bc2894a49b405b1af312326b734ea253426f2c778a28d537ebc86c2bfc46bf140caf402865c183fe02e176181c05dfe9d4dadf55b74aa306a823b38cda6db6cf65abfdf5a9b520d2e21997de5917f36c03ad1b35055ecd9574e3887b";
+    private static final long EXPIRATION_TIME = 3600000; // 1 hora en milisegundos duración de token
+    public String generateToken(String username, String role) {
+        return Jwts.builder()
+                .subject(username)
+                .claim("role", role)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .signWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY)))
+                .compact();
+    }
+
+    public Claims extractClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY)))
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            extractClaims(token);
+            return true;
+        } catch (JwtException e) {
+            return false;
+        }
+    }
 }
