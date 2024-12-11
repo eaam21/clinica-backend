@@ -27,7 +27,12 @@ public class SecurityConfig {
     		.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
     		.authorizeHttpRequests(http->{
                 http.requestMatchers("/api/usuario/login").permitAll();
-                http.requestMatchers(HttpMethod.GET, "/api/paciente/listar").hasAnyRole("ADMIN", "DOCTOR");
+                http.requestMatchers("/api/especialidad/listar").hasAnyRole("ADMIN", "MEDICO");
+                http.requestMatchers(HttpMethod.GET, "/api/paciente/obtener/**").hasAnyRole("ADMIN", "MEDICO");
+                http.requestMatchers(HttpMethod.POST, "/api/paciente/registrar").hasAnyRole("ADMIN", "MEDICO");
+                http.requestMatchers(HttpMethod.GET, "/api/paciente/listar").hasAnyRole("ADMIN", "MEDICO", "ASISTENTE");
+                http.requestMatchers(HttpMethod.PUT, "/api/paciente/actualizar/**").hasAnyRole("ADMIN", "MEDICO");
+                http.requestMatchers(HttpMethod.DELETE, "/api/paciente/eliminar").hasRole("ADMIN");
                 http.anyRequest().authenticated();
     		})
     		.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
