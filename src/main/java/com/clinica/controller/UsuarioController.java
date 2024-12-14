@@ -1,6 +1,7 @@
 package com.clinica.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import com.clinica.model.service.IUsuarioService;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/usuario")
