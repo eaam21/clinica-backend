@@ -41,13 +41,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
 					String token = jwtUtil.generateToken(usuario.getNombreUsuario(), listaRoles.get(0).getNombre());
 					return new LoginOutputDTO(Boolean.TRUE, "Operación realizada correctamente", token);
 				}else {
-					return new LoginOutputDTO(Boolean.FALSE, "Usuario y/o contraseña incorrectas", null);
+					return new LoginOutputDTO(Boolean.FALSE, "Usuario y/o contraseña invalidos", null);
 				}
 			}else {
-				return new LoginOutputDTO(Boolean.FALSE, "Usuario y/o contraseña incorrectas", null);
+				return new LoginOutputDTO(Boolean.FALSE, "Usuario y/o contraseña invalidos", null);
 			}
 		}else {
-			return new LoginOutputDTO(Boolean.FALSE, "Usuario y/o contraseña incorrectas", null);
+			return new LoginOutputDTO(Boolean.FALSE, "Usuario y/o contraseña invalidos", null);
 		}
 	}
 }
